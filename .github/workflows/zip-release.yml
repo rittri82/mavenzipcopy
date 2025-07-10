@@ -22,23 +22,35 @@ jobs:
       - name: Build famus.zip
         run: mvn clean package -Pfamus-zip
 
-      - name: Move famus.zip to workspace
-        run: mv target/famus.zip $GITHUB_WORKSPACE/famus.zip
+      - name: List contents of target after famus build
+        run: ls -l target
 
-      - name: Clean for fimus build
-        run: mvn clean
+      - name: Find any ZIP files after famus build
+        run: find target -name "*.zip"
 
       - name: Build fimus.zip
-        run: mvn package -Pfimus-zip
+        run: mvn clean package -Pfimus-zip
 
-      - name: Move fimus.zip to workspace
-        run: mv target/fimus.zip $GITHUB_WORKSPACE/fimus.zip
+      - name: List contents of target after fimus build
+        run: ls -l target
 
-      - name: Upload ZIPs to GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            famus.zip
-            fimus.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Find any ZIP files after fimus build
+        run: find target -name "*.zip"
+
+      # Do NOT move any files yet; wait for debug output!
+
+      # After you confirm ZIP filenames, use:
+      # - name: Copy famus.zip to workspace
+      #   run: cp target/<actual-famus-zip-file> famus.zip
+      # - name: Copy fimus.zip to workspace
+      #   run: cp target/<actual-fimus-zip-file> fimus.zip
+
+      # - name: Upload ZIPs to GitHub Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: |
+      #       famus.zip
+      #       fimus.zip
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
