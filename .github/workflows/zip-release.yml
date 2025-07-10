@@ -1,0 +1,31 @@
+name: Build ZIPs and Upload to Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers only on tags like v1.0.0
+
+jobs:
+  build-and-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build ZIPs
+        run: mvn clean package
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            target/famus.zip
+            target/fimus.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
