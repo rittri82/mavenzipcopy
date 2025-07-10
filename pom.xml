@@ -28,17 +28,14 @@
               <execution>
                 <id>make-famus-zip</id>
                 <phase>package</phase>
-                <goals><goal>single</goal></goals>
+                <goals>
+                  <goal>single</goal>
+                </goals>
                 <configuration>
+                  <descriptors>
+                    <descriptor>src/assembly/famus.xml</descriptor>
+                  </descriptors>
                   <finalName>famus</finalName>
-                  <formats><format>zip</format></formats>
-                  <includeBaseDirectory>false</includeBaseDirectory>
-                  <fileSets>
-                    <fileSet>
-                      <directory>${basedir}/famus</directory>
-                      <outputDirectory>/famus</outputDirectory>
-                    </fileSet>
-                  </fileSets>
                 </configuration>
               </execution>
             </executions>
@@ -56,17 +53,14 @@
               <execution>
                 <id>make-fimus-zip</id>
                 <phase>package</phase>
-                <goals><goal>single</goal></goals>
+                <goals>
+                  <goal>single</goal>
+                </goals>
                 <configuration>
+                  <descriptors>
+                    <descriptor>src/assembly/fimus.xml</descriptor>
+                  </descriptors>
                   <finalName>fimus</finalName>
-                  <formats><format>zip</format></formats>
-                  <includeBaseDirectory>false</includeBaseDirectory>
-                  <fileSets>
-                    <fileSet>
-                      <directory>${basedir}/fimus</directory>
-                      <outputDirectory>/fimus</outputDirectory>
-                    </fileSet>
-                  </fileSets>
                 </configuration>
               </execution>
             </executions>
